@@ -3,8 +3,8 @@ class Solver:
         with open(file, 'r') as f:
             # Split the input to lines
             self.input = f.read().strip()
-            # Prepare the array of results passed in the first step
-            self.results = [0]
+        # Prepare the array of results passed in the first step
+        self.results = [0]
 
     def solver_part_one(self) -> int:
         content_lines = self.input.split('\n')
