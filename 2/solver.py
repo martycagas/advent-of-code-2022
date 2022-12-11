@@ -1,10 +1,7 @@
 class Solver:
-    ENEMY_MOVES = ('A', 'B', 'C')
-    PLAYER_MOVES = ('X', 'Y', 'Z')
     ENEMY_MOVES_MAP = {'A': 0, 'B': 1, 'C': 2}
     PLAYER_MOVES_MAP = {'X': 0, 'Y': 1, 'Z': 2}
     MOVE_SCORES = (1, 2, 3)
-    RESULT_SCORES = (3, 6, 0)
 
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
@@ -12,19 +9,21 @@ class Solver:
 
     @staticmethod
     def eval_move(enemy_move: str, player_move: str) -> int:
+        RESULT_SCORES = (3, 6, 0)
         index = Solver.ENEMY_MOVES_MAP[enemy_move]
         PLAYER_INDEX = Solver.PLAYER_MOVES_MAP[player_move]
         distance = 0
         while index != PLAYER_INDEX and distance < 3:
             distance += 1
-            index = (index + 1) % len(Solver.RESULT_SCORES)
-        return Solver.RESULT_SCORES[distance]
+            index = (index + 1) % len(RESULT_SCORES)
+        return RESULT_SCORES[distance]
 
     @staticmethod
     def decode_move(enemy_move: str, desired_outcome: str) -> str:
+        PLAYER_MOVES = ('X', 'Y', 'Z')
         ENEMY_MOVE_INDEX = Solver.ENEMY_MOVES_MAP[enemy_move]
         OUTCOME_MAP = {'X': 2, 'Y': 0, 'Z': 1}
-        return Solver.PLAYER_MOVES[(ENEMY_MOVE_INDEX + OUTCOME_MAP[desired_outcome]) % len(Solver.PLAYER_MOVES)]
+        return PLAYER_MOVES[(ENEMY_MOVE_INDEX + OUTCOME_MAP[desired_outcome]) % len(PLAYER_MOVES)]
 
     def solver_part_one(self) -> int:
         total_score = 0
