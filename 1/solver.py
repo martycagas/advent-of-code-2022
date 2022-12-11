@@ -30,7 +30,7 @@ class Solver:
         # Return the sum of the top-three list
         return sum(top_three)
 
-    def solve(self) -> None:
+    def print_solve(self) -> None:
         print(self.solver_part_one())
         print(self.solver_part_two())
 
@@ -44,4 +44,4 @@ if __name__ == '__main__':
                         required=True, help='The puzzle\'s input file.')
     args = parser.parse_args()
     solver = Solver(args.input)
-    solver.solve()
+    solver.print_solve()
