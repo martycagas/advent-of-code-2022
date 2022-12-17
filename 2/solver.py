@@ -49,10 +49,8 @@ class Solver:
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(
-        description='Advent of Code 2022 day one puzzle solver')
-    parser.add_argument('-i', '--input', type=str,
-                        required=True, help='The puzzle\'s input file.')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input', type=str, required=True)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.solve()
