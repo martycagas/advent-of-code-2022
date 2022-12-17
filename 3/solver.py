@@ -5,8 +5,6 @@ class Solver:
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
             self.input = f.read().strip()
-        self.duplicate_list = []
-        self.priority_list = []
 
     @staticmethod
     def evaluate_char(char: str) -> int:
@@ -21,6 +19,8 @@ class Solver:
             return 0
 
     def solver_part_one(self) -> int:
+        duplicate_list = []
+        priority_list = []
         for line in self.input.split('\n'):
             compartment_size = len(line) // 2
             match_list = []
@@ -28,10 +28,10 @@ class Solver:
                 for j in range(compartment_size, len(line)):
                     if line[i] == line[j]:
                         match_list.append(line[j])
-            self.duplicate_list.append(match_list[0])
-        for item in self.duplicate_list:
-            self.priority_list.append(Solver.evaluate_char(item))
-        return sum(self.priority_list)
+            duplicate_list.append(match_list[0])
+        for item in duplicate_list:
+            priority_list.append(Solver.evaluate_char(item))
+        return sum(priority_list)
 
     def solver_part_two(self) -> int:
         pass
