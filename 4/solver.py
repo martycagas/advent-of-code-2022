@@ -22,7 +22,20 @@ class Solver:
         return fully_contained
 
     def solver_part_two(self) -> int:
-        pass
+        overlaps = 0
+        for boundary in self.boundaries:
+            first = set(range(boundary[0], boundary[1] + 1))
+            second = set(range(boundary[2], boundary[3] + 1))
+            for item in first:
+                if item in second:
+                    overlaps += 1
+                    break
+            else:
+                for item in second:
+                    if item in first:
+                        overlaps += 1
+                        break
+        return overlaps
 
     def solve(self) -> None:
         print(self.solver_part_one())
