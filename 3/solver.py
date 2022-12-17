@@ -2,6 +2,9 @@ import string
 
 
 class Solver:
+    class LoopBreakException(Exception):
+        pass
+
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
             self.input = f.read().strip()
@@ -19,18 +22,17 @@ class Solver:
             return 0
 
     def solver_part_one(self) -> int:
-        duplicate_list = []
         priority_list = []
         for line in self.input.split('\n'):
             compartment_size = len(line) // 2
-            match_list = []
-            for i in range(compartment_size):
-                for j in range(compartment_size, len(line)):
-                    if line[i] == line[j]:
-                        match_list.append(line[j])
-            duplicate_list.append(match_list[0])
-        for item in duplicate_list:
-            priority_list.append(Solver.evaluate_char(item))
+            try:
+                for i in range(compartment_size):
+                    for j in range(compartment_size, len(line)):
+                        if line[i] == line[j]:
+                            priority_list.append(Solver.evaluate_char(line[j]))
+                            raise Solver.LoopBreakException
+            except Solver.LoopBreakException:
+                pass
         return sum(priority_list)
 
     def solver_part_two(self) -> int:
