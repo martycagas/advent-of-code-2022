@@ -23,7 +23,7 @@ class Solver:
 
     def solver_part_one(self) -> int:
         priority_list = []
-        for line in self.input.split('\n'):
+        for line in self.input.split():
             compartment_size = len(line) // 2
             try:
                 for i in range(compartment_size):
@@ -36,7 +36,7 @@ class Solver:
         return sum(priority_list)
 
     def solver_part_two(self) -> int:
-        input_lines = self.input.split('\n')
+        input_lines = self.input.split()
         group_list = [input_lines[index:index + 3]
                       for index in range(0, len(input_lines), 3)]
         priority_list = []
