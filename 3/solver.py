@@ -36,7 +36,24 @@ class Solver:
         return sum(priority_list)
 
     def solver_part_two(self) -> int:
-        pass
+        input_lines = self.input.split('\n')
+        group_list = [input_lines[index:index + 3]
+                      for index in range(0, len(input_lines), 3)]
+        priority_list = []
+        for group in group_list:
+            if len(group) != 3:
+                continue
+            try:
+                for i in range(len(group[0])):
+                    for j in range(len(group[1])):
+                        for k in range(len(group[2])):
+                            if group[0][i] == group[1][j] == group[2][k]:
+                                priority_list.append(
+                                    Solver.evaluate_char(group[0][i]))
+                                raise Solver.LoopBreakException
+            except Solver.LoopBreakException:
+                pass
+        return sum(priority_list)
 
     def solve(self) -> None:
         print(self.solver_part_one())
