@@ -2,9 +2,6 @@ import re
 
 
 class Solver:
-    class LoopBreakException(Exception):
-        pass
-
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
             self.input = f.read().strip()
