@@ -15,3 +15,17 @@ No. My schedule doesn't really allow me to, sadly.
 ## Why Python?
 
 I don't get to write much code in Python as part of my work or other hobby projects and it's one of the languages I'd like to practice more.
+
+## Your code is horrible!
+
+Why, thank you!
+
+No, but seriously... it's on purpose.
+
+## ... why?
+
+When I write code for work - or any code, really - I put a lot of effort into it being readable and clean. That means I never really make use of the more esoteric constructs in languages, such as lambdas, list comprehension in Python, etc. - since all of them can be written in some different, maybe more verbose, but certainly easier to understand way.
+
+While I stand by the fact that these constructs are best left unused in most cases, it also means I never really get to practice with them - and recently I've noticed that translates to a severe lack of skill understanding them when used by someone else.
+
+And also, I realised I can have these challenges be an outlet for my sadistic desires, writing terrible code that I would otherwise rethink and rewrite. That's why also ended up removing and not writing any comments. Let's see how terrible my code can get before I go insane trying to debug the things I myself wrote 5 minutes ago.
