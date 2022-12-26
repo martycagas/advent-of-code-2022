@@ -7,7 +7,7 @@ class Solver:
 
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
-            self.input = f.read().strip()
+            self.input: str = f.read().strip()
 
     @staticmethod
     def evaluate_char(char: str) -> int:

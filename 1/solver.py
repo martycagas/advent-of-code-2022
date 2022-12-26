@@ -1,8 +1,8 @@
 class Solver:
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
-            self.input = f.read().strip()
-        self.results = [0]
+            self.input: str = f.read().strip()
+        self.results: list[int] = [0]
 
     def solver_part_one(self) -> int:
         content_lines = self.input.split('\n')

@@ -4,8 +4,8 @@ import re
 class Solver:
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
-            self.input = f.read().strip()
-        self.boundaries = []
+            self.input: str = f.read().strip()
+        self.boundaries: list[int] = []
         for line in self.input.split('\n'):
             self.boundaries.append([int(i) for i in re.split(',|-', line)])
 
