@@ -5,7 +5,7 @@ class Solver:
         self.results: list[int] = [0]
 
     def solver_part_one(self) -> int:
-        content_lines = self.input.split('\n')
+        content_lines = self.input.splitlines()
         for line in content_lines:
             if line == '':
                 self.results.append(0)

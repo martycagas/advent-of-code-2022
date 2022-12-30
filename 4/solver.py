@@ -6,7 +6,7 @@ class Solver:
         with open(file, 'r') as f:
             self.input: str = f.read().strip()
         self.boundaries: list[int] = []
-        for line in self.input.split('\n'):
+        for line in self.input.splitlines():
             self.boundaries.append([int(i) for i in re.split(',|-', line)])
 
     def solver_part_one(self) -> int:

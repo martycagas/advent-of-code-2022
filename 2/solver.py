@@ -27,7 +27,7 @@ class Solver:
 
     def solver_part_one(self) -> int:
         total_score = 0
-        for line in self.input.split('\n'):
+        for line in self.input.splitlines():
             enemy_move, player_move = line.split(' ')
             total_score += Solver.MOVE_SCORES[Solver.PLAYER_MOVES_MAP[player_move]]
             total_score += Solver.eval_move(enemy_move, player_move)
@@ -35,7 +35,7 @@ class Solver:
 
     def solver_part_two(self) -> int:
         total_score = 0
-        for line in self.input.split('\n'):
+        for line in self.input.splitlines():
             enemy_move, player_move = line.split(' ')
             player_move = Solver.decode_move(enemy_move, player_move)
             total_score += Solver.MOVE_SCORES[Solver.PLAYER_MOVES_MAP[player_move]]
