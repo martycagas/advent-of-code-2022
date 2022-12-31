@@ -33,6 +33,16 @@ class Solver:
             for _ in range(how_many):
                 self.cargo[where_to].append(self.cargo[where_from].pop())
 
+        def move_multiple(self, how_many: int, where_from: int, where_to: int):
+            tmp_list: list = []
+            for _ in range(how_many):
+                try:
+                    tmp_list.append(self.cargo[where_from].pop())
+                except IndexError:
+                    break
+            for _ in range(len(tmp_list)):
+                self.cargo[where_to].append(tmp_list.pop())
+
         def get_top_row(self) -> str:
             accumulator_string: str = ''
             for column in self.cargo.values():
@@ -45,18 +55,24 @@ class Solver:
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
             input = re.split('\n\n', f.read().strip())
-            self.cargo_deck: Solver.CargoDeck = Solver.CargoDeck(input[0])
+            self.cargo_input: str = input[0]
             self.moves_input: list[str] = input[1].splitlines()
 
     def solver_part_one(self) -> int:
+        cargo_deck: Solver.CargoDeck = Solver.CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(' ')
-            self.cargo_deck.move(int(operands[1]), int(
+            cargo_deck.move(int(operands[1]), int(
                 operands[3]), int(operands[5]))
-        return self.cargo_deck.get_top_row()
+        return cargo_deck.get_top_row()
 
     def solver_part_two(self) -> int:
-        pass
+        cargo_deck: Solver.CargoDeck = Solver.CargoDeck(self.cargo_input)
+        for line in self.moves_input:
+            operands = line.strip().split(' ')
+            cargo_deck.move_multiple(
+                int(operands[1]), int(operands[3]), int(operands[5]))
+        return cargo_deck.get_top_row()
 
     def solve(self) -> None:
         print(self.solver_part_one())
