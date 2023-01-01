@@ -3,7 +3,7 @@ from collections import deque
 
 class Solver:
     class CharBuffer:
-        def __init__(self, max_len: int = 4) -> None:
+        def __init__(self, max_len: int) -> None:
             self.buffer: deque[str] = deque('', max_len)
 
         def __str__(self) -> str:
@@ -31,7 +31,7 @@ class Solver:
         with open(file, 'r') as f:
             self.input: str = f.read().strip()
 
-    def solve_part_one(self, buffer_len: int = 4) -> int:
+    def solve_both(self, buffer_len: int) -> int:
         counter: int = buffer_len - 1
         buffer: Solver.CharBuffer = Solver.CharBuffer(buffer_len)
         for char in self.input[:buffer_len - 1]:
@@ -42,12 +42,9 @@ class Solver:
             if buffer.are_all_chars_unique():
                 return counter
 
-    def solve_part_two(self) -> int:
-        pass
-
     def solve(self) -> None:
-        print(self.solve_part_one())
-        print(self.solve_part_two())
+        print(self.solve_both(4))
+        print(self.solve_both(14))
 
 
 if __name__ == '__main__':
