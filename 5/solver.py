@@ -58,7 +58,7 @@ class Solver:
             self.cargo_input: str = input[0]
             self.moves_input: list[str] = input[1].splitlines()
 
-    def solver_part_one(self) -> str:
+    def solve_part_one(self) -> str:
         cargo_deck: Solver.CargoDeck = Solver.CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(' ')
@@ -66,7 +66,7 @@ class Solver:
                 operands[3]), int(operands[5]))
         return cargo_deck.get_top_row()
 
-    def solver_part_two(self) -> str:
+    def solve_part_two(self) -> str:
         cargo_deck: Solver.CargoDeck = Solver.CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(' ')
@@ -75,8 +75,8 @@ class Solver:
         return cargo_deck.get_top_row()
 
     def solve(self) -> None:
-        print(self.solver_part_one())
-        print(self.solver_part_two())
+        print(self.solve_part_one())
+        print(self.solve_part_two())
 
 
 if __name__ == '__main__':

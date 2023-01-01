@@ -4,7 +4,7 @@ class Solver:
             self.input: str = f.read().strip()
         self.results: list[int] = [0]
 
-    def solver_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         content_lines = self.input.splitlines()
         for line in content_lines:
             if line == '':
@@ -13,7 +13,7 @@ class Solver:
                 self.results[-1] += int(line)
         return max(self.results)
 
-    def solver_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         top_three = [0, 0, 0]
         for result in self.results:
             top_three.append(result)
@@ -22,8 +22,8 @@ class Solver:
         return sum(top_three)
 
     def print_solve(self) -> None:
-        print(self.solver_part_one())
-        print(self.solver_part_two())
+        print(self.solve_part_one())
+        print(self.solve_part_two())
 
 
 if __name__ == '__main__':

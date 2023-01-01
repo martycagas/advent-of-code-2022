@@ -31,7 +31,7 @@ class Solver:
         with open(file, 'r') as f:
             self.input: str = f.read().strip()
 
-    def solver_part_one(self, buffer_len: int = 4) -> int:
+    def solve_part_one(self, buffer_len: int = 4) -> int:
         counter: int = buffer_len - 1
         buffer: Solver.CharBuffer = Solver.CharBuffer(buffer_len)
         for char in self.input[:buffer_len - 1]:
@@ -42,12 +42,12 @@ class Solver:
             if buffer.are_all_chars_unique():
                 return counter
 
-    def solver_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         pass
 
     def solve(self) -> None:
-        print(self.solver_part_one())
-        print(self.solver_part_two())
+        print(self.solve_part_one())
+        print(self.solve_part_two())
 
 
 if __name__ == '__main__':

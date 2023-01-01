@@ -25,7 +25,7 @@ class Solver:
         OUTCOME_MAP = {'X': 2, 'Y': 0, 'Z': 1}
         return PLAYER_MOVES[(ENEMY_MOVE_INDEX + OUTCOME_MAP[desired_outcome]) % len(PLAYER_MOVES)]
 
-    def solver_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         total_score = 0
         for line in self.input.splitlines():
             enemy_move, player_move = line.split(' ')
@@ -33,7 +33,7 @@ class Solver:
             total_score += Solver.eval_move(enemy_move, player_move)
         return total_score
 
-    def solver_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         total_score = 0
         for line in self.input.splitlines():
             enemy_move, player_move = line.split(' ')
@@ -43,8 +43,8 @@ class Solver:
         return total_score
 
     def solve(self) -> None:
-        print(self.solver_part_one())
-        print(self.solver_part_two())
+        print(self.solve_part_one())
+        print(self.solve_part_two())
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ class Solver:
         for line in self.input.splitlines():
             self.boundaries.append([int(i) for i in re.split(',|-', line)])
 
-    def solver_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         fully_contained = 0
         for boundary in self.boundaries:
             first = set(range(boundary[0], boundary[1] + 1))
@@ -18,7 +18,7 @@ class Solver:
                 fully_contained += 1
         return fully_contained
 
-    def solver_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         overlaps = 0
         for boundary in self.boundaries:
             first = set(range(boundary[0], boundary[1] + 1))
@@ -35,8 +35,8 @@ class Solver:
         return overlaps
 
     def solve(self) -> None:
-        print(self.solver_part_one())
-        print(self.solver_part_two())
+        print(self.solve_part_one())
+        print(self.solve_part_two())
 
 
 if __name__ == '__main__':

@@ -21,7 +21,7 @@ class Solver:
         else:
             return 0
 
-    def solver_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         priority_list = []
         for line in self.input.split():
             compartment_size = len(line) // 2
@@ -35,7 +35,7 @@ class Solver:
                 pass
         return sum(priority_list)
 
-    def solver_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         input_lines = self.input.split()
         group_list = [input_lines[index:index + 3]
                       for index in range(0, len(input_lines), 3)]
@@ -56,8 +56,8 @@ class Solver:
         return sum(priority_list)
 
     def solve(self) -> None:
-        print(self.solver_part_one())
-        print(self.solver_part_two())
+        print(self.solve_part_one())
+        print(self.solve_part_two())
 
 
 if __name__ == '__main__':
