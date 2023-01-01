@@ -1,7 +1,7 @@
 class Solver:
     def __init__(self, file: str) -> None:
         with open(file, 'r') as f:
-            self.input = f.read().strip()
+            self.input: str = f.read().strip()
 
     def solver_part_one(self) -> int:
         pass
