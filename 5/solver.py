@@ -29,11 +29,11 @@ class Solver:
                 output = output.strip() + '\n'
             return output.strip()
 
-        def move(self, how_many: int, where_from: int, where_to: int):
+        def move(self, how_many: int, where_from: int, where_to: int) -> None:
             for _ in range(how_many):
                 self.cargo[where_to].append(self.cargo[where_from].pop())
 
-        def move_multiple(self, how_many: int, where_from: int, where_to: int):
+        def move_multiple(self, how_many: int, where_from: int, where_to: int) -> None:
             tmp_list: list = []
             for _ in range(how_many):
                 try:
@@ -58,7 +58,7 @@ class Solver:
             self.cargo_input: str = input[0]
             self.moves_input: list[str] = input[1].splitlines()
 
-    def solver_part_one(self) -> int:
+    def solver_part_one(self) -> str:
         cargo_deck: Solver.CargoDeck = Solver.CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(' ')
@@ -66,7 +66,7 @@ class Solver:
                 operands[3]), int(operands[5]))
         return cargo_deck.get_top_row()
 
-    def solver_part_two(self) -> int:
+    def solver_part_two(self) -> str:
         cargo_deck: Solver.CargoDeck = Solver.CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(' ')
