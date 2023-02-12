@@ -22,9 +22,9 @@ class CargoDeck:
     def __str__(self) -> str:
         output: str = ''
         for key in self.cargo.keys():
-            output += '{}: '.format(key)
+            output += f'{key}: '
             for item in self.cargo[key]:
-                output += '[{}] '.format(item)
+                output += f'[{item}] '
             output = output.strip() + '\n'
         return output.strip()
 

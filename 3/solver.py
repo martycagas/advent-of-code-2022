@@ -13,7 +13,7 @@ class Solver:
     def evaluate_char(char: str) -> int:
         if len(char) != 1:
             raise ValueError(
-                'In: evaluate_char(str) -> int\nError: argument {} is not a character.'.format(char))
+                f'In: evaluate_char(str) -> int\nError: argument {char} is not a character.')
         if ord('a') <= ord(char) <= ord('z'):
             return ord(char) - ord('a') + 1
         elif ord('A') <= ord(char) <= ord('Z'):
