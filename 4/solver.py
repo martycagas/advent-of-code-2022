@@ -3,11 +3,11 @@ import re
 
 class Solver:
     def __init__(self, file: str) -> None:
-        with open(file, 'r') as f:
+        with open(file, "r") as f:
             self.input: str = f.read().strip()
         self.boundaries: list[int] = []
         for line in self.input.splitlines():
-            self.boundaries.append([int(i) for i in re.split(',|-', line)])
+            self.boundaries.append([int(i) for i in re.split(",|-", line)])
 
     def solve_part_one(self) -> int:
         fully_contained = 0
@@ -39,10 +39,11 @@ class Solver:
         print(self.solve_part_two())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str, required=True)
+    parser.add_argument("-i", "--input", type=str, required=True)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.solve()

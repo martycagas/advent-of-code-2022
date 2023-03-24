@@ -5,7 +5,7 @@ class CargoDeck:
     def __init__(self, box_map_string: str) -> None:
         self.cargo: dict[int, list[str]] = {}
         piles: list[str] = box_map_string.splitlines()
-        for column_index in re.split('\s+', piles[-1].strip()):
+        for column_index in re.split("\s+", piles[-1].strip()):
             self.cargo[int(column_index)] = []
         colum_count: int = len(self.cargo)
         for line in piles[:-1]:
@@ -16,16 +16,16 @@ class CargoDeck:
                     pass
         for key in self.cargo.keys():
             self.cargo[key] = [
-                item for item in reversed(self.cargo[key]) if item != ' '
+                item for item in reversed(self.cargo[key]) if item != " "
             ]
 
     def __str__(self) -> str:
-        output: str = ''
+        output: str = ""
         for key in self.cargo.keys():
-            output += f'{key}: '
+            output += f"{key}: "
             for item in self.cargo[key]:
-                output += f'[{item}] '
-            output = output.strip() + '\n'
+                output += f"[{item}] "
+            output = output.strip() + "\n"
         return output.strip()
 
     def move(self, how_many: int, where_from: int, where_to: int) -> None:
@@ -43,7 +43,7 @@ class CargoDeck:
             self.cargo[where_to].append(tmp_list.pop())
 
     def get_top_row(self) -> str:
-        accumulator_string: str = ''
+        accumulator_string: str = ""
         for column in self.cargo.values():
             try:
                 accumulator_string += column[-1]
@@ -54,25 +54,25 @@ class CargoDeck:
 
 class Solver:
     def __init__(self, file: str) -> None:
-        with open(file, 'r') as f:
-            input = re.split('\n\n', f.read().strip())
+        with open(file, "r") as f:
+            input = re.split("\n\n", f.read().strip())
             self.cargo_input: str = input[0]
             self.moves_input: list[str] = input[1].splitlines()
 
     def solve_part_one(self) -> str:
         cargo_deck: CargoDeck = CargoDeck(self.cargo_input)
         for line in self.moves_input:
-            operands = line.strip().split(' ')
-            cargo_deck.move(int(operands[1]), int(
-                operands[3]), int(operands[5]))
+            operands = line.strip().split(" ")
+            cargo_deck.move(int(operands[1]), int(operands[3]), int(operands[5]))
         return cargo_deck.get_top_row()
 
     def solve_part_two(self) -> str:
         cargo_deck: CargoDeck = CargoDeck(self.cargo_input)
         for line in self.moves_input:
-            operands = line.strip().split(' ')
+            operands = line.strip().split(" ")
             cargo_deck.move_multiple(
-                int(operands[1]), int(operands[3]), int(operands[5]))
+                int(operands[1]), int(operands[3]), int(operands[5])
+            )
         return cargo_deck.get_top_row()
 
     def solve(self) -> None:
@@ -80,10 +80,11 @@ class Solver:
         print(self.solve_part_two())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str, required=True)
+    parser.add_argument("-i", "--input", type=str, required=True)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.solve()
