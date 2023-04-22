@@ -32,7 +32,7 @@ class Solver:
         with open(file, "r") as f:
             self.input: str = f.read().strip()
 
-    def solve_both(self, buffer_len: int) -> int:
+    def solve_both(self, buffer_len: int) -> int | None:
         counter: int = buffer_len - 1
         buffer: CharBuffer = CharBuffer(buffer_len)
         for char in self.input[: buffer_len - 1]:

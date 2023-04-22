@@ -23,7 +23,7 @@ class Solver:
             return 0
 
     def solve_part_one(self) -> int:
-        priority_list = []
+        priority_list: list[int] = []
         for line in self.input.split():
             compartment_size = len(line) // 2
             try:
@@ -41,7 +41,7 @@ class Solver:
         group_list = [
             input_lines[index : index + 3] for index in range(0, len(input_lines), 3)
         ]
-        priority_list = []
+        priority_list: list[int] = []
         for group in group_list:
             if len(group) != 3:
                 continue

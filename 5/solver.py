@@ -1,11 +1,11 @@
-import re
+from re import split
 
 
 class CargoDeck:
     def __init__(self, box_map_string: str) -> None:
         self.cargo: dict[int, list[str]] = {}
         piles: list[str] = box_map_string.splitlines()
-        for column_index in re.split("\s+", piles[-1].strip()):
+        for column_index in split(r"\s+", piles[-1].strip()):
             self.cargo[int(column_index)] = []
         colum_count: int = len(self.cargo)
         for line in piles[:-1]:
@@ -33,7 +33,7 @@ class CargoDeck:
             self.cargo[where_to].append(self.cargo[where_from].pop())
 
     def move_multiple(self, how_many: int, where_from: int, where_to: int) -> None:
-        tmp_list: list = []
+        tmp_list: list[str] = []
         for _ in range(how_many):
             try:
                 tmp_list.append(self.cargo[where_from].pop())
@@ -55,7 +55,7 @@ class CargoDeck:
 class Solver:
     def __init__(self, file: str) -> None:
         with open(file, "r") as f:
-            input = re.split("\n\n", f.read().strip())
+            input = split(r"\n\n", f.read().strip())
             self.cargo_input: str = input[0]
             self.moves_input: list[str] = input[1].splitlines()
 

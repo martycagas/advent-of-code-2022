@@ -1,13 +1,13 @@
-import re
+from re import split
 
 
 class Solver:
     def __init__(self, file: str) -> None:
         with open(file, "r") as f:
             self.input: str = f.read().strip()
-        self.boundaries: list[int] = []
+        self.boundaries: list[list[int]] = []
         for line in self.input.splitlines():
-            self.boundaries.append([int(i) for i in re.split(",|-", line)])
+            self.boundaries.append([int(i) for i in split(r",|-", line)])
 
     def solve_part_one(self) -> int:
         fully_contained = 0
