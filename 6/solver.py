@@ -6,10 +6,7 @@ class CharBuffer:
         self.buffer: deque[str] = deque("", max_len)
 
     def __str__(self) -> str:
-        ret_str = ""
-        for char in self.buffer:
-            ret_str += char
-        return ret_str
+        return "".join(char for char in self.buffer)
 
     def push_char(self, char: str) -> None:
         if len(char) == 1:
@@ -20,8 +17,7 @@ class CharBuffer:
     def are_all_chars_unique(self) -> bool:
         buffer_as_str = str(self)
         for i in range(len(buffer_as_str)):
-            comp_string = buffer_as_str[:i] + buffer_as_str[i + 1 :]
-            if buffer_as_str[i] in comp_string:
+            if buffer_as_str[i] in buffer_as_str[i + 1 :]:
                 return False
         else:
             return True
