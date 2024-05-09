@@ -1,6 +1,8 @@
+from pathlib import Path
+
 class Solver:
-    def __init__(self, file: str) -> None:
-        with open(file, "r") as f:
+    def __init__(self, file: Path) -> None:
+        with file.open() as f:
             self.input: str = f.read().strip()
         self.results: list[int] = [0]
 
@@ -30,7 +32,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", type=str, required=True)
+    parser.add_argument("input", type=Path)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.print_solve()

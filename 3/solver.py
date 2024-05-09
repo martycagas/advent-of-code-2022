@@ -1,20 +1,19 @@
 import string
+from pathlib import Path
 
 
 class Solver:
     class LoopBreakException(Exception):
         pass
 
-    def __init__(self, file: str) -> None:
-        with open(file, "r") as f:
+    def __init__(self, file: Path) -> None:
+        with file.open() as f:
             self.input: str = f.read().strip()
 
     @staticmethod
     def evaluate_char(char: str) -> int:
         if len(char) != 1:
-            raise ValueError(
-                f"In: evaluate_char(str) -> int\nError: argument {char} is not a character."
-            )
+            raise ValueError(f"evaluate_char(): argument {char} is not a character.")
         if ord("a") <= ord(char) <= ord("z"):
             return ord(char) - ord("a") + 1
         elif ord("A") <= ord(char) <= ord("Z"):
@@ -65,7 +64,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", type=str, required=True)
+    parser.add_argument("input", type=Path)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.solve()

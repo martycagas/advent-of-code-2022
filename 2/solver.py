@@ -1,10 +1,12 @@
+from pathlib import Path
+
 class Solver:
     ENEMY_MOVES_MAP: dict[str, int] = {"A": 0, "B": 1, "C": 2}
     PLAYER_MOVES_MAP: dict[str, int] = {"X": 0, "Y": 1, "Z": 2}
     MOVE_SCORES: tuple[int, int, int] = (1, 2, 3)
 
-    def __init__(self, file: str) -> None:
-        with open(file, "r") as f:
+    def __init__(self, file: Path) -> None:
+        with file.open() as f:
             self.input: str = f.read().strip()
 
     @staticmethod
@@ -53,7 +55,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", type=str, required=True)
+    parser.add_argument("input", type=Path)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.solve()

@@ -1,4 +1,5 @@
 from collections import deque
+from pathlib import Path
 
 
 class CharBuffer:
@@ -24,8 +25,8 @@ class CharBuffer:
 
 
 class Solver:
-    def __init__(self, file: str) -> None:
-        with open(file, "r") as f:
+    def __init__(self, file: Path) -> None:
+        with file.open() as f:
             self.input: str = f.read().strip()
 
     def solve_both(self, buffer_len: int) -> int | None:
@@ -48,7 +49,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", type=str, required=True)
+    parser.add_argument("input", type=Path)
     args = parser.parse_args()
     solver = Solver(args.input)
     solver.solve()
