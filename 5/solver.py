@@ -61,14 +61,14 @@ class Solver:
             self.moves_input: list[str] = input[1].splitlines()
 
     def solve_part_one(self) -> str:
-        cargo_deck: CargoDeck = CargoDeck(self.cargo_input)
+        cargo_deck = CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(" ")
             cargo_deck.move(int(operands[1]), int(operands[3]), int(operands[5]))
         return cargo_deck.get_top_row()
 
     def solve_part_two(self) -> str:
-        cargo_deck: CargoDeck = CargoDeck(self.cargo_input)
+        cargo_deck = CargoDeck(self.cargo_input)
         for line in self.moves_input:
             operands = line.strip().split(" ")
             cargo_deck.move_multiple(
