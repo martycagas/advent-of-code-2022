@@ -64,12 +64,34 @@ class Solver:
 
             return inner_accumulator
 
-        accumulate_sizes(self.construct_tree())
-
+        accumulate_sizes(self.construct_tree()["/"])  # type: ignore
         return total_accumulator
 
     def solve_part_two(self) -> int:
-        pass
+        dirs: list[int] = []
+
+        def get_dirs(node: TreeNode) -> int:
+            nonlocal dirs
+            inner_accumulator = 0
+
+            for item in node.values():
+                if isinstance(item, int):
+                    inner_accumulator += item
+                else:
+                    inner_accumulator += get_dirs(item)
+
+            dirs.append(inner_accumulator)
+
+            return inner_accumulator
+
+        get_dirs(self.construct_tree()["/"])  # type: ignore
+
+        current_free = 70000000 - max(dirs)
+        for item in sorted(dirs):
+            if item + current_free > 30000000:
+                return item
+        else:
+            raise RuntimeError("Couldn't find a match in all directories!")
 
     def solve(self) -> None:
         print(self.solve_part_one())
