@@ -7,7 +7,7 @@ class Solver:
 
     def __init__(self, file: Path) -> None:
         with file.open() as f:
-            self.input: str = f.read().strip()
+            self.input: str = f.read()
 
     @staticmethod
     def eval_move(enemy_move: str, player_move: str) -> int:

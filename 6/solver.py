@@ -27,7 +27,7 @@ class CharBuffer:
 class Solver:
     def __init__(self, file: Path) -> None:
         with file.open() as f:
-            self.input: str = f.read().strip()
+            self.input: str = f.read()
 
     def solve_both(self, buffer_len: int) -> int | None:
         counter: int = buffer_len - 1

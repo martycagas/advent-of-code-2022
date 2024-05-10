@@ -9,7 +9,7 @@ type TreeNode = dict[str, int | TreeNode]
 class Solver:
     def __init__(self, file: Path) -> None:
         with file.open() as f:
-            self.input: str = f.read().strip()
+            self.input: str = f.read()
 
     def construct_tree(self) -> TreeNode:
         term_output = (item.strip() for item in self.input.splitlines())

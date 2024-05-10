@@ -5,7 +5,7 @@ from re import split
 class Solver:
     def __init__(self, file: Path) -> None:
         with file.open() as f:
-            self.input: str = f.read().strip()
+            self.input: str = f.read()
         self.boundaries: list[list[int]] = []
         for line in self.input.splitlines():
             self.boundaries.append([int(i) for i in split(r",|-", line)])

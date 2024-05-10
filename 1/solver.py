@@ -3,7 +3,7 @@ from pathlib import Path
 class Solver:
     def __init__(self, file: Path) -> None:
         with file.open() as f:
-            self.input: str = f.read().strip()
+            self.input: str = f.read()
         self.results: list[int] = [0]
 
     def solve_part_one(self) -> int:
