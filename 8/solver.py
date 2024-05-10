@@ -55,7 +55,41 @@ class Solver:
         return accumulator
 
     def solve_part_two(self) -> int:
-        pass
+        best_score = 0
+        for y in range(1, self.dimensions.y - 1):
+            for x in range(1, self.dimensions.x - 1):
+                current_height = self.in_matrix[y][x]
+                up = down = left = right = 1
+
+                scan_y = y + 1
+                while (scan_y < (self.dimensions.y - 1)) and (
+                    current_height > self.in_matrix[scan_y][x]
+                ):
+                    down += 1
+                    scan_y += 1
+
+                scan_y = y - 1
+                while (scan_y > 0) and (current_height > self.in_matrix[scan_y][x]):
+                    up += 1
+                    scan_y -= 1
+
+                scan_x = x + 1
+                while (scan_x < (self.dimensions.x - 1)) and (
+                    current_height > self.in_matrix[y][scan_x]
+                ):
+                    right += 1
+                    scan_x += 1
+
+                scan_x = x - 1
+                while (scan_x > 0) and (current_height > self.in_matrix[y][scan_x]):
+                    left += 1
+                    scan_x -= 1
+
+                score = up * down * left * right
+                if score > best_score:
+                    best_score = score
+
+        return best_score
 
     def solve(self) -> None:
         print(self.solve_part_one())
