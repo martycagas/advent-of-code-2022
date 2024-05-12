@@ -84,7 +84,20 @@ class Solver:
         return len(rope.visited)
 
     def solve_part_two(self) -> int:
-        pass
+        rope = Rope(10)
+        for line in self.input:
+            match line.split():
+                case ["R", steps]:
+                    rope.move(Direction.RIGHT, int(steps))
+                case ["L", steps]:
+                    rope.move(Direction.LEFT, int(steps))
+                case ["U", steps]:
+                    rope.move(Direction.UP, int(steps))
+                case ["D", steps]:
+                    rope.move(Direction.DOWN, int(steps))
+                case _:
+                    raise ValueError(f"Unable to parse a line: {line}!")
+        return len(rope.visited)
 
     def solve(self) -> None:
         print(self.solve_part_one())
