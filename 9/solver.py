@@ -36,26 +36,26 @@ class Rope:
 
         return Point(x, y)
 
-    def __init__(self) -> None:
-        self.head = Point(0, 0)
-        self.tail = Point(0, 0)
+    def __init__(self, length: int) -> None:
+        if length < 2:
+            raise ValueError("Length must be at least 2!")
+        self.knots: list[Point] = []
+        for _ in range(length):
+            self.knots.append(Point(0, 0))
         self.visited: set[Point] = set()
-        self.visited.add(self.tail)
+        self.visited.add(self.knots[-1])
 
     def step(self, dir: Direction) -> None:
-        self.head = Point(self.head.x + dir.x, self.head.y + dir.y)
-        distance_x = self.head.x - self.tail.x
-        distance_y = self.head.y - self.tail.y
-
-        if abs(distance_x) > 1 or abs(distance_y) > 1:
-            dir_vec = Rope.cap_vector(distance_x, distance_y)
-            if distance_x == 0:
-                self.tail = Point(self.tail.x, self.tail.y + dir_vec.y)
-            elif distance_y == 0:
-                self.tail = Point(self.tail.x + dir_vec.x, self.tail.y)
-            else:
-                self.tail = Point(self.tail.x + dir_vec.x, self.tail.y + dir_vec.y)
-            self.visited.add(self.tail)
+        self.knots[0] = Point(self.knots[0].x + dir.x, self.knots[0].y + dir.y)
+        for i in range(1, len(self.knots)):
+            distance_x = self.knots[i - 1].x - self.knots[i].x
+            distance_y = self.knots[i - 1].y - self.knots[i].y
+            if abs(distance_x) > 1 or abs(distance_y) > 1:
+                dir_vec = Rope.cap_vector(distance_x, distance_y)
+                self.knots[i] = Point(
+                    self.knots[i].x + dir_vec.x, self.knots[i].y + dir_vec.y
+                )
+        self.visited.add(self.knots[-1])
 
     def move(self, dir: Direction, steps: int) -> None:
         for _ in range(steps):
@@ -68,7 +68,7 @@ class Solver:
             self.input: list[str] = f.read().splitlines()
 
     def solve_part_one(self) -> int:
-        rope = Rope()
+        rope = Rope(2)
         for line in self.input:
             match line.split():
                 case ["R", steps]:
