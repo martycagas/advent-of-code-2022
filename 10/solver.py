@@ -22,6 +22,12 @@ class Solver:
 
         while True:
             cycle += 1
+
+            if cycle == 20:
+                accumulator += register * cycle
+            elif (cycle - 20) % 40 == 0:
+                accumulator += register * cycle
+
             if state == ProcState.READY:
                 try:
                     line = self.input[index]
@@ -44,11 +50,6 @@ class Solver:
                 else:
                     raise RuntimeError(f"Tried to add NULL operand, cycle={cycle}!")
                 state = ProcState.READY
-
-            if cycle == 20:
-                accumulator += register * cycle
-            elif (cycle - 20) % 40 == 0:
-                accumulator += register * cycle
         return accumulator
 
     def solve_part_two(self) -> int:
